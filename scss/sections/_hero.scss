@@ -1,0 +1,366 @@
+@use "../abstracts";
+@use "../components";
+.hero {
+    padding: 42px 0 19px;
+    background: abstracts.$primary-bg;
+    @include abstracts.screen(tablet) {
+        padding-bottom: 80px;
+    }
+
+    @include abstracts.screen(desktop) {
+        padding: 109px 0 140px;
+    }
+
+    /* Col left */
+    &__left {
+        &--music {
+            position: relative;
+        }
+
+        &--img {
+            aspect-ratio: 160 / 179;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover;
+
+            // @include abstracts.screen(tablet) {
+            //     width: 100%;
+            //     height: 100%;
+            // }
+
+            @include abstracts.screen(desktop) {
+                aspect-ratio: 270 / 302;
+                width: 100%;
+            }
+        }
+
+        &--wrapper {
+            @include abstracts.flexCenter(center, row) {
+                column-gap: 8px;
+            }
+            width: 115.098px;
+            height: 35.597px;
+            position: absolute;
+            top: calc(100% - 17px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 13px 10px;
+            background: abstracts.$bg-white;
+            border-radius: 8px;
+
+            @include abstracts.screen(tablet) {
+                width: 194px;
+                height: 60px;
+                left: 40%;
+                background: rgb(189 189 189 / 40%);
+                box-shadow: 0px 7.119px 26.105px 0px rgba(0, 0, 0, 0.07);
+                backdrop-filter: blur(2.9664385319px);
+                column-gap: 15px;
+            }
+            @include abstracts.screen(desktop) {
+                width: 194px;
+                height: 60px;
+                background: rgb(189 189 189 / 40%);
+                box-shadow: 0px 7.119px 26.105px 0px rgba(0, 0, 0, 0.07);
+                backdrop-filter: blur(2.9664385319px);
+                column-gap: 15px;
+            }
+        }
+
+        &--play {
+            @include abstracts.flexCenter(center);
+            width: 17px;
+            height: 17px;
+            border: 1.5px solid abstracts.$primary-color;
+            border-radius: 50%;
+            cursor: pointer;
+            @include abstracts.screen(tablet) {
+                width: 25px;
+                height: 25px;
+                background: transparent;
+            }
+
+            @include abstracts.screen(desktop) {
+                width: 27px;
+                height: 27px;
+                background: transparent;
+            }
+
+            & svg {
+                width: 7px;
+                height: 7px;
+                object-fit: cover;
+                fill: abstracts.$primary-color;
+            }
+        }
+
+        &--audio {
+            img {
+                width: 70px;
+                object-fit: cover;
+                @include abstracts.screen(desktop) {
+                    width: 120px;
+                }
+            }
+        }
+    }
+
+    &__avatar {
+        margin-top: 31px;
+        @include abstracts.screen(tablet) {
+            margin-top: 55px;
+        }
+        @include abstracts.screen(desktop) {
+            margin-top: 53px;
+        }
+        &--text {
+            @include abstracts.responsive-font(0.8rem, 1.4rem);
+            font-weight: 600;
+        }
+
+        &--list {
+            @include abstracts.flexCenter(null, row);
+            margin-top: 5px;
+
+            @include abstracts.screen(tablet) {
+                margin-top: 10px;
+            }
+
+            @include abstracts.screen(desktop) {
+                margin-top: 10px;
+            }
+        }
+
+        &--item {
+            width: 28.478px;
+            height: 28.478px;
+            object-fit: cover;
+            border: 1.5px solid abstracts.$bg-white;
+            border-radius: 50%;
+            @include abstracts.screen(tablet) {
+                width: 60px;
+                height: 60px;
+            }
+            @include abstracts.screen(desktop) {
+                width: 48px;
+                height: 48px;
+            }
+
+            & + & {
+                margin-left: -14px;
+                @include abstracts.screen(desktop) {
+                    margin-left: -17px;
+                }
+            }
+
+            &:last-child {
+                @include abstracts.flexCenter(center);
+                padding: 5px 6px;
+                @include abstracts.responsive-font(0.7rem, 1.2rem);
+                color: abstracts.$color-white;
+                background: abstracts.$tile-color;
+            }
+        }
+    }
+
+    /* Col right */
+    &__right {
+        %placeholder {
+            position: absolute;
+            content: "";
+            display: inline-block;
+            width: 53px;
+            height: 41.542px;
+
+            background-image: url(../icon/shape-hero.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            @include abstracts.screen(desktop) {
+                width: 60px;
+                height: 36.542px;
+            }
+        }
+        &--top {
+            @include abstracts.flexCenter(center, column);
+            position: relative;
+            color: abstracts.$color-white;
+            width: 48.65px;
+            height: 48.65px;
+            margin-left: 70px;
+            background: abstracts.$color-orange;
+            border-radius: 50%;
+
+            @include abstracts.screen(tablet) {
+                width: 82px;
+                height: 82px;
+            }
+
+            @include abstracts.screen(desktop) {
+                width: 82px;
+                height: 82px;
+                margin-left: 118px;
+            }
+
+            &::before {
+                @extend %placeholder;
+                left: -42px;
+                top: 18px;
+                @include abstracts.screen(desktop) {
+                    left: -80px;
+                    top: 32px;
+                }
+            }
+
+            &::after {
+                @extend %placeholder;
+                right: 0;
+                bottom: -30px;
+                @include abstracts.screen(desktop) {
+                    bottom: -40px;
+                }
+            }
+
+            .hero__right--text {
+                @include abstracts.responsive-font(0.8rem, 1.4rem);
+                font-weight: 800;
+            }
+
+            .hero__right--span {
+                @include abstracts.responsive-font(0.6rem, 1rem);
+                margin-top: 1.5px;
+                font-weight: 500;
+            }
+        }
+
+        &--bottom {
+            margin-top: 7px;
+            @include abstracts.screen(tablet) {
+                margin-top: 12px;
+            }
+
+            @include abstracts.screen(desktop) {
+                margin-top: 12px;
+            }
+
+            .hero__aplication {
+                display: flex;
+                flex-direction: row;
+                column-gap: 11px;
+            }
+
+            .hero__aplication--icon {
+                width: 16.612px;
+                height: 16.612px;
+                object-fit: cover;
+
+                @include abstracts.screen(tablet) {
+                    width: 28px;
+                    height: 28px;
+                }
+
+                @include abstracts.screen(desktop) {
+                    width: 28px;
+                    height: 28px;
+                }
+            }
+        }
+
+        &--img {
+            position: relative;
+            margin-top: 16px;
+            @include abstracts.screen(desktop) {
+                margin-top: 28px;
+            }
+
+            & img {
+                aspect-ratio: 160 / 179;
+                width: 100%;
+                height: auto;
+                border-radius: 4px;
+                object-fit: cover;
+
+                @include abstracts.screen(tablet) {
+                    height: auto;
+                }
+
+                @include abstracts.screen(desktop) {
+                    aspect-ratio: 270 / 302;
+                    width: 100%;
+                }
+            }
+
+            .hero__right--about {
+                @include abstracts.flexCenter(center, column);
+                position: absolute;
+                bottom: 9px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 115.098px;
+                height: 35.597px;
+                border-radius: 5px;
+                background: rgba(255, 255, 255, 0.4);
+                box-shadow: 0px 7.119px 26.105px 0px rgba(0, 0, 0, 0.07);
+                backdrop-filter: blur(2.9664385318756104px);
+
+                @include abstracts.screen(desktop) {
+                    width: 194px;
+                    height: 60px;
+                }
+
+                .hero__right--name {
+                    @include abstracts.responsive-font(0.8rem, 1.4rem);
+                    color: abstracts.$tile-color;
+                    font-weight: 600;
+                }
+
+                .hero__right--position {
+                    @include abstracts.responsive-font(0.7rem, 1.2rem);
+                    margin-top: 2px;
+                    color: abstracts.$desc-color;
+                }
+            }
+        }
+    }
+
+    &-about {
+        margin-top: 39px;
+
+        .desc {
+            @include abstracts.screen(tablet) {
+                width: 425px;
+            }
+        }
+
+        &__wrapper {
+            display: flex;
+            column-gap: 28px;
+            margin-top: 28px;
+
+            @include abstracts.screen(desktop) {
+                margin-top: 40px;
+            }
+
+            .btn-common {
+                @include components.btnCommon {
+                    background: abstracts.$primary-color;
+                }
+            }
+        }
+    }
+}
+
+.hero__left--images {
+    width: calc(100% - 9px);
+    @inclue abstracts.screen(desktop) {
+        width: calc(100% - 15px);
+    }
+}
+.hero__right--wrapper {
+    width: calc(100% - 9px);
+    margin-left: 9px;
+    @inclue abstracts.screen(desktop) {
+        width: calc(100% - 15px);
+        margin-left: 15px;
+    }
+}

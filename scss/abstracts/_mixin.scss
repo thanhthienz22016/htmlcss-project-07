@@ -1,0 +1,69 @@
+@use "color";
+
+@mixin flexCenter($justify: null, $direction: null) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+    flex-direction: $direction;
+    @content;
+}
+
+@mixin grid($column, $spacing) {
+    --column: #{$column};
+    --spacing: #{$spacing};
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--spacing));
+    row-gap: var(--spacing);
+    > * {
+        width: calc(100% / var(--column) - var(--spacing));
+        margin-left: var(--spacing);
+    }
+}
+
+@mixin screen($device) {
+    @if $device == mobile {
+        @media screen and (max-width: 767.98px) {
+            @content;
+        }
+    }
+
+    @if $device == tablet {
+        @media screen and (min-width: 768px) and (max-width: 991.98px) {
+            @content;
+        }
+    }
+
+    @if $device == desktop {
+        @media screen and (min-width: 992px) {
+            @content;
+        }
+    }
+}
+
+@mixin responsive-font(
+    $minFont,
+    $maxFont,
+    $minViewport: 320px,
+    $maxViewport: 1200px
+) {
+    $deltaFont: ($maxFont - $minFont) / 1rem * 10;
+    $deltaViewport: ($maxViewport - $minViewport) / 1px;
+
+    font-size: clamp(
+        $minFont,
+        calc(
+            #{$minFont} + #{$deltaFont} *
+                ((100vw - #{$minViewport}) / #{$deltaViewport})
+        ),
+        $maxFont
+    );
+}
+
+@mixin truncate($lc) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lc;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,48 @@
+@use "../abstracts";
+
+%common {
+    color: abstracts.$tile-color;
+    font-weight: 700;
+}
+
+/* Heading lv1 */
+@mixin heading-1 {
+    @include abstracts.responsive-font(3.6rem, 7rem);
+    @extend %common;
+    line-height: 1.27;
+    @content;
+    @include abstracts.screen(desktop) {
+        line-height: 1.14;
+    }
+}
+
+.heading-lv1 {
+    @include heading-1;
+}
+
+/* Heading lv2 */
+@mixin heading-2 {
+    @include abstracts.responsive-font(2.6rem, 4.2rem);
+    @extend %common;
+    line-height: 1.38;
+    @content;
+
+    @include abstracts.screen(desktop) {
+        line-height: 1.23;
+    }
+}
+
+.heading-lv2 {
+    @include heading-2;
+}
+
+@mixin heading-3 {
+    @include abstracts.responsive-font(1.2rem, 2rem);
+    @extend %common;
+    line-height: 1.5;
+    @content;
+}
+
+.heading-lv3 {
+    @include heading-3;
+}

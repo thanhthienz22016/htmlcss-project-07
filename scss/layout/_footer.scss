@@ -1,0 +1,112 @@
+@use "../abstracts";
+
+.footer {
+    padding: 54px 0 50px;
+    background: abstracts.$primary-bg;
+    @include abstracts.screen(desktop) {
+        padding: 100px 0 38px;
+    }
+
+    // &__wrapper {
+    //     flex-direction: row;
+    // }
+
+    &__top {
+        @include abstracts.screen(desktop) {
+            width: 270px;
+        }
+
+        .desc {
+            margin-top: 14px;
+            width: 270px;
+        }
+
+        &--logo {
+            width: 116.12px;
+            height: 26px;
+            object-fit: cover;
+        }
+
+        &--list {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: row;
+            column-gap: 15px;
+            .footer__top--social {
+                @include abstracts.flexCenter(center, row);
+                width: 36px;
+                height: 36px;
+                background: abstracts.$tile-color;
+                outline: none;
+                border: none;
+                border-radius: 50%;
+                transition: background 0.3s;
+                cursor: pointer;
+                &:hover {
+                    background: abstracts.$primary-color;
+                }
+            }
+            svg {
+                fill: abstracts.$color-white;
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    &__bottom {
+        margin-top: 38px;
+        @include abstracts.screen(desktop) {
+            margin-top: 0;
+            margin-left: 9%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer__col {
+            & + .footer__col {
+                margin-top: 38px;
+                @include abstracts.screen(desktop) {
+                    margin-top: 0;
+                }
+            }
+
+            &--heading {
+                color: abstracts.$tile-color;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            &--list {
+                margin-top: 24px;
+                @include abstracts.flexCenter(start, column) {
+                    align-items: start;
+                    row-gap: 16px;
+                }
+
+                a {
+                    color: abstracts.$desc-color;
+                    font-size: 1.6rem;
+                    line-height: 1.75;
+                    transition: color 0.3s, text-shadow 0.3s;
+
+                    &:hover {
+                        color: abstracts.$primary-color;
+                        text-shadow: 0 0 1px #333;
+                    }
+                }
+            }
+
+            &--brand {
+                display: flex;
+                column-gap: 16px;
+                margin-top: 24px;
+            }
+
+            &--application {
+                width: 36px;
+                height: 36px;
+                object-fit: cover;
+            }
+        }
+    }
+}

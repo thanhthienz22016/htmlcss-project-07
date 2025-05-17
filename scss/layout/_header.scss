@@ -1,0 +1,250 @@
+@use "../abstracts";
+
+.header {
+    padding: 20px 0 15px;
+    background: abstracts.$primary-bg;
+    z-index: 99;
+    @include abstracts.screen(desktop) {
+        &__mobile--toggle {
+            display: none;
+        }
+
+        &__menu--mobile {
+            @include abstracts.flexCenter(column);
+            margin-top: 15px;
+        }
+
+        &__item {
+            padding: 10px 24px;
+        }
+
+        &__menu--drop {
+            position: relative;
+
+            &:hover .header__menu--dropdown .header__menu--icon {
+                rotate: 180deg;
+            }
+
+            &:hover .submenu {
+                opacity: 1;
+                visibility: visible;
+                scale: 1;
+            }
+
+            .header__menu--dropdown {
+                display: flex;
+                column-gap: 7px;
+            }
+            .header__menu--icon {
+                display: inline-block;
+                width: 8px;
+                height: 20px;
+                transition: rotate 0.2s;
+            }
+
+            .submenu {
+                @include abstracts.flexCenter(center, column);
+                opacity: 0;
+                visibility: hidden;
+                scale: 0;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                min-width: 165px;
+                background: abstracts.$primary-bg;
+                border-radius: 6px;
+                box-shadow: 0px 10px 23px 0px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                transform-origin: 0% top;
+                transition: opacity 0.2s, visibility 0.2s, scale 0.2s;
+                & li {
+                    display: inline-block;
+                    width: 100%;
+                    transition: background ease, color ease;
+                    transition-duration: 0.2s;
+                }
+
+                & li:hover {
+                    background: abstracts.$color-orange;
+                }
+
+                & li:hover a {
+                    color: abstracts.$color-white;
+                }
+
+                & li:first-child > * {
+                    border-radius: 6px 6px 0 0;
+                }
+
+                & li:last-child > * {
+                    border-radius: 0 0 6px 6px;
+                }
+
+                &__item {
+                    display: block;
+                    padding: 10px 24px;
+                    transition: color 0.2s ease;
+                }
+            }
+        }
+    }
+
+    &__cta--wrapper {
+        display: none;
+        @include abstracts.screen(desktop) {
+            @include abstracts.flexCenter;
+            column-gap: 28px;
+        }
+    }
+
+    &-fixed {
+        position: sticky;
+        top: 0px;
+        transition: all 0.3s ease;
+        @include abstracts.screen(desktop) {
+            top: -30px;
+            padding: 42px 0 12px;
+        }
+    }
+
+    &__logo {
+        display: block;
+        width: 116.12px;
+        height: 26px;
+        object-fit: cover;
+    }
+
+    &__menu {
+        @include abstracts.flexCenter(space-between);
+    }
+
+    &__list {
+        @include abstracts.flexCenter(space-between);
+    }
+
+    &__list--desktop {
+        display: none;
+        @include abstracts.screen(desktop) {
+            display: flex;
+            a {
+                font-size: 1.6rem;
+                color: abstracts.$desc-color;
+                &:hover {
+                    text-shadow: 0 0 1px #333;
+                }
+            }
+        }
+    }
+
+    &__icon {
+        position: relative;
+        width: 18px;
+        height: 16px;
+        &--child {
+            display: inline-block;
+            position: absolute;
+            width: 18px;
+            height: 2px;
+            background: #61594f;
+        }
+
+        &--child:nth-of-type(2) {
+            top: 50%;
+        }
+
+        &--child:nth-of-type(3) {
+            top: 100%;
+        }
+
+        @include abstracts.screen(desktop) {
+            display: none;
+        }
+    }
+
+    /* Menu mobile*/
+    &__mobile--toggle {
+        z-index: 100;
+
+        input[type="checkbox"] {
+            display: none;
+            &:checked ~ .header__menu--active {
+                transform: translateX(0%);
+            }
+
+            &:checked + .header__menu--overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .header__menu--overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+
+        .header__menu--list {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: abstracts.$desc-color;
+            line-height: 1.75;
+            text-decoration: none;
+        }
+    }
+
+    &__menu--active {
+        position: fixed;
+        inset: 0 40% 0 0;
+        background: abstracts.$bg-white;
+        padding: 45px 30px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+
+        .header__menu--close {
+            position: absolute;
+            right: 10%;
+            top: 3%;
+            cursor: pointer;
+            &.header__menu--close {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .header__menu--list + .header__menu--list {
+            margin-top: 15px;
+        }
+
+        .header__menu--list a {
+            transition: text-shadow 0.3s;
+        }
+
+        .header__menu--list a:hover {
+            text-shadow: 0 0 1px #333;
+        }
+    }
+
+    &__cta--mobile {
+        margin-top: 20px;
+        @include abstracts.flexCenter(null, column) {
+            align-items: start;
+            row-gap: 20px;
+        }
+    }
+
+    &__signup {
+        width: 157px;
+        height: 64px;
+        @include abstracts.screen(desktop) {
+            width: 116px;
+            height: 48px;
+        }
+    }
+}

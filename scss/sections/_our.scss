@@ -1,0 +1,185 @@
+@use "../abstracts";
+@use "../components";
+.our {
+    padding: 70px 0;
+    background: abstracts.$primary-bg;
+    @include abstracts.screen(desktop) {
+        padding: 100px 0;
+    }
+
+    &__top {
+        @include abstracts.screen(tablet) {
+            @include abstracts.flexCenter(center, row) {
+                justify-content: space-between;
+            }
+        }
+        @include abstracts.screen(desktop) {
+            @include abstracts.flexCenter(center, row) {
+                justify-content: space-between;
+            }
+        }
+        .heading-lv2 {
+            width: 339px;
+
+            .mark-desktop::after {
+                background-image: none;
+            }
+
+            @include abstracts.screen(desktop) {
+                width: 390px;
+                .mark-mobile::after {
+                    background-image: none;
+                }
+
+                .mark-desktop::after {
+                    @include components.mark;
+                    width: 155px;
+                    height: 27px;
+                    rotate: -7deg;
+                }
+            }
+        }
+
+        mark::after {
+            width: 123px;
+            height: 15px;
+            rotate: -1deg;
+        }
+
+        .btn-common {
+            display: none;
+            @include abstracts.screen(tablet) {
+                display: flex;
+            }
+            @include abstracts.screen(desktop) {
+                display: flex;
+            }
+        }
+    }
+
+    /* Slider */
+    &__slide {
+        @include abstracts.flexCenter(null, row) {
+            flex-wrap: nowrap;
+            column-gap: 30px;
+        }
+        margin-top: 38px;
+        overflow: hidden;
+        @include abstracts.screen(desktop) {
+            flex-wrap: wrap;
+            margin-top: 84px;
+            gap: 30px;
+        }
+
+        &--item {
+            display: flex;
+            align-items: center;
+            // flex-shrink: 0;
+            min-width: 100%;
+            column-gap: 19px;
+            overflow: hidden;
+            border-radius: 4px;
+
+            .our__slide--overflow {
+                overflow: hidden;
+                flex-shrink: 0;
+            }
+
+            @include abstracts.screen(desktop) {
+                width: 50%;
+                min-width: 0;
+                column-gap: 30px;
+                &:nth-child(2) {
+                    flex: 1 0;
+                }
+
+                &:nth-child(3),
+                &:nth-child(4) {
+                    flex-direction: row-reverse;
+                }
+
+                &:nth-child(4) {
+                    flex: 1 0;
+                }
+            }
+        }
+
+        &--wrapper {
+            font-family: abstracts.$support-font;
+            color: #fd6f1f;
+            .our__slide--time {
+                @include abstracts.responsive-font(1rem, 1.4rem);
+            }
+
+            .heading-lv3 {
+                margin-top: 7px;
+                @include abstracts.truncate(2);
+            }
+
+            .desc {
+                @include abstracts.responsive-font(1rem, 1.6rem);
+                line-height: 1.8;
+                @include abstracts.truncate(3);
+
+                @include abstracts.screen(desktop) {
+                    line-height: 1.75;
+                }
+            }
+
+            .cta-common {
+                margin-top: 7px;
+                @include abstracts.responsive-font(1rem, 1.4rem);
+                @include abstracts.screen(desktop) {
+                    margin-top: 11px;
+                }
+                svg {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+
+    &__slide--thumb {
+        width: 160px;
+        height: 170px;
+        border-radius: 4px;
+        object-fit: cover;
+        // transition: scale 0.3s ease-in-out;
+        // &:hover {
+        //     scale: 1.1;
+        // }
+        @include abstracts.screen(tablet) {
+            width: 260px;
+            height: 271px;
+        }
+        @include abstracts.screen(desktop) {
+            width: 270px;
+            height: 286px;
+        }
+    }
+
+    .slide-dots {
+        margin-top: 18px;
+        @include abstracts.screen(desktop) {
+            margin-top: 55px;
+        }
+    }
+
+    &__bottom {
+        .btn-common {
+            margin-top: 38px;
+        }
+
+        @include abstracts.screen(tablet) {
+            .btn-common {
+                display: none;
+            }
+        }
+        @include abstracts.screen(desktop) {
+            .btn-common {
+                display: none;
+            }
+        }
+    }
+}

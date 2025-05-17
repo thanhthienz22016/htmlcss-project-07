@@ -1,0 +1,76 @@
+@use "../abstracts";
+
+// Btn
+@mixin btnCommon(
+    $w: 157px,
+    $h: 64px,
+    $fz: null,
+    $fw: null,
+    $bg: abstracts.$tile-color,
+    $br: 8px,
+    $cl: #fff
+) {
+    @include abstracts.flexCenter(center);
+    width: $w;
+    height: $h;
+    font-size: $fz;
+    font-weight: $fw;
+    border-radius: $br;
+    color: $cl;
+    background: $bg;
+    transition: opacity 0.3s ease;
+    @content;
+}
+
+/* button components */
+.btn-common {
+    @include abstracts.responsive-font(1.8rem, 1.8rem);
+    @include btnCommon {
+        // font-size: 1.6rem;
+        font-weight: 600;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.header__login {
+    font-weight: 600;
+    color: abstracts.$tile-color;
+    &:hover {
+        text-shadow: 0 0 1px #333;
+    }
+}
+
+@mixin ctaBtn {
+    transition: color 0.3s;
+    @content;
+    &:hover {
+        color: abstracts.$primary-color;
+    }
+
+    @include abstracts.flexCenter(start, row) {
+        column-gap: 8px;
+    }
+    @include abstracts.responsive-font(1.8rem, 1.8rem);
+    font-weight: 600;
+    color: abstracts.$tile-color;
+    white-space: nowrap;
+
+    svg {
+        width: 18px;
+        height: 18px;
+        object-fit: cover;
+        transition: scale 0.3s, fill 0.3s;
+    }
+
+    &:hover svg {
+        scale: 1.2;
+        fill: abstracts.$primary-color;
+    }
+}
+
+.cta-common {
+    @include ctaBtn;
+}

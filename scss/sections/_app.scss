@@ -1,0 +1,148 @@
+@use "../abstracts";
+
+.application {
+    padding: 100px 0 50px;
+    background: abstracts.$second-bg;
+    @include abstracts.screen(desktop) {
+        padding: 160px 0 80px;
+    }
+    &__wrapper {
+        align-items: center;
+        @include abstracts.screen(tablet) {
+            flex-direction: row-reverse;
+        }
+        @include abstracts.screen(desktop) {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__list {
+        position: relative;
+        height: 238px;
+        @include abstracts.screen(desktop) {
+            width: 100%;
+        }
+        &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            width: 176px;
+            height: 176px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            fill: abstracts.$color-orange;
+            opacity: 0.4;
+            filter: blur(129px);
+            @include abstracts.screen(desktop) {
+                width: 287px;
+                height: 287px;
+                border-radius: 287px;
+                opacity: 0.4;
+                background: abstracts.$color-orange;
+                filter: blur(129px);
+            }
+        }
+    }
+
+    &__item {
+        position: absolute;
+        object-fit: cover;
+
+        &:nth-child(1) {
+            left: 104px;
+            bottom: 0;
+            width: 75px;
+            height: 75px;
+            @include abstracts.screen(desktop) {
+                width: 126px;
+                height: 126px;
+                bottom: -20%;
+            }
+        }
+
+        &:nth-child(2) {
+            right: 31px;
+            bottom: 24px;
+            width: 82px;
+            height: 82px;
+            @include abstracts.screen(desktop) {
+                width: 138px;
+                height: 138px;
+                bottom: -5%;
+            }
+        }
+
+        &:nth-child(3) {
+            width: 89px;
+            height: 89px;
+            left: 113px;
+            top: 0;
+            @include abstracts.screen(desktop) {
+                width: 148px;
+                height: 148px;
+                left: 32%;
+                top: -35%;
+            }
+        }
+
+        &:nth-child(4) {
+            width: 48px;
+            height: 48px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            @include abstracts.screen(desktop) {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        &:nth-child(5) {
+            width: 58px;
+            height: 58px;
+            right: 0;
+            top: 35px;
+            transform: translateY(-50%);
+            @include abstracts.screen(desktop) {
+                width: 100px;
+                height: 100px;
+                top: 0;
+            }
+        }
+    }
+
+    &__content {
+        margin-top: 38px;
+        .btn-common {
+            margin-top: 28px;
+            background: abstracts.$primary-color;
+            column-gap: 8px;
+            @include abstracts.screen(desktop) {
+                margin-top: 38px;
+            }
+        }
+
+        & svg {
+            width: 18px;
+            height: 18px;
+            object-fit: cover;
+            fill: abstracts.$bg-white;
+        }
+
+        & .heading-lv2 {
+            & mark::after {
+                width: 135px;
+                height: 16px;
+                rotate: 0deg;
+                @include abstracts.screen(desktop) {
+                    width: 236px;
+                    height: 30px;
+                    left: -5px;
+                    top: 21px;
+                    rotate: -2deg;
+                }
+            }
+        }
+    }
+}

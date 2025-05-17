@@ -1,0 +1,42 @@
+@use "../abstracts";
+
+@mixin slideDot {
+    @include abstracts.flexCenter(center);
+    column-gap: 12px;
+    @content;
+
+    &__item {
+        display: inline-block;
+        position: relative;
+        width: 8px;
+        height: 8px;
+        background: #d8d5de;
+        border-radius: 50%;
+        cursor: pointer;
+        &::before {
+            position: absolute;
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            width: 12px;
+            height: 12px;
+            background: abstracts.$primary-color;
+            border-radius: 50%;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s;
+        }
+
+        &:hover::before,
+        &.active::before {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.slide-dots {
+    @include slideDot;
+}

@@ -1,0 +1,110 @@
+@use "../abstracts";
+
+.about {
+    padding: 153px 0 50px;
+    background: abstracts.$bg-white;
+
+    @include abstracts.screen(desktop) {
+        padding: 168px 0 80px;
+        &__wrapper {
+            flex-direction: row-reverse;
+            @include abstracts.screen(desktop) {
+                align-items: center;
+            }
+        }
+    }
+    &__top {
+        .heading-lv2 {
+            position: relative;
+            &::before {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                bottom: calc(100% + 10px);
+                width: 43px;
+                height: 35px;
+                background-image: url(../icon/block-quote.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+
+        mark::after {
+            width: 117px;
+            height: 15px;
+            left: 0;
+            rotate: -2deg;
+            @include abstracts.screen(desktop) {
+                width: 178px;
+                height: 25px;
+                bottom: 0;
+                rotate: -2deg;
+            }
+        }
+
+        .desc {
+            @include abstracts.truncate(4);
+        }
+
+        &--cta {
+            display: block;
+            margin-top: 12px;
+            color: #aba6b5;
+            font-size: 1.4rem;
+            transition: color 0.3s;
+            &:hover {
+                color: abstracts.$primary-color;
+            }
+        }
+    }
+
+    &__bottom {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .about__bottom--slide {
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        &--left {
+            position: absolute;
+            left: 39px;
+            z-index: 3;
+            .about__bottom--slide {
+                aspect-ratio: 160 / 168;
+                width: 160px;
+                @include abstracts.screen(desktop) {
+                    aspect-ratio: 270 / 284;
+                    width: 270px;
+                }
+            }
+        }
+
+        &--right {
+            grid-column: 3 / span 4;
+            z-index: 2;
+            margin-left: auto;
+            .about__bottom--slide {
+                aspect-ratio: 218 / 262;
+                width: 218px;
+                height: auto;
+                @include abstracts.screen(desktop) {
+                    aspect-ratio: 370 / 444;
+                    width: 370px;
+                }
+            }
+        }
+
+        .slide-dots {
+            position: absolute;
+            left: 12%;
+            bottom: 0;
+        }
+    }
+}
